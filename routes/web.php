@@ -18,4 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin-dashboard', [AdminController::class,'index'])->name('admin.dashboard.index');
+
+
+
+Route::middleware('admin.redirect')->group(function(){
+    Route::get('login', [AdminController::class, 'login_page'])->name('login.page');
+    Route::post('login', [AdminController::class, 'login'])->name('login');
+});
+
+Route::middleware('admin')->group(function(){
+    Route::get('admin-dashboard', [AdminController::class,'index'])->name('admin.dashboard.index');
+    Route::get('logout', [AdminController::class, 'logout'])->name('logout');
+});
