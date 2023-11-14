@@ -8,6 +8,7 @@
 		<title>ইন্সপেকশন ম্যানেজমেন্ট সিস্টেম</title>
 		<meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="canonical" href="https://keenthemes.com/metronic" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -1377,7 +1378,16 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 		{{-- jquert table  --}}
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-		
+		<script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.16/sweetalert2.min.js') }}"></script>
+		<script src="{{ url('//cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
+		<script>
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			
+		</script>
 		@yield('scripts')
 	</body>
 	<!--end::Body-->

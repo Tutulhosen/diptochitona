@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\Admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,7 @@ Route::middleware('admin.redirect')->group(function(){
 Route::middleware('admin')->group(function(){
     Route::get('admin-dashboard', [AdminController::class,'index'])->name('admin.dashboard.index');
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
+    Route::get('teacher', [TeacherController::class, 'index'])->name('teacher.index');
+    Route::get('teacher/create', [TeacherController::class, 'create'])->name('teacher.create');
+    Route::post('teacher/create', [TeacherController::class, 'store'])->name('teacher.store');
 });
