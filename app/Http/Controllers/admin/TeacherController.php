@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Validator;
 class TeacherController extends Controller
 {
     public function index(){
-        return view('dashboard.pages.users.teacher.index');
+        $teacher= DB::table('teachers')->latest()->get();
+        return view('dashboard.pages.users.teacher.index', compact('teacher'));
     }
     //teacher create page
     public function create(){
